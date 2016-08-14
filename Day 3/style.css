@@ -1,0 +1,41 @@
+.container {
+	border: 1px solid black;
+	width: 624px;
+	height: 312px;
+	display: inline-block;
+}
+.container-buttons {
+	display: inline-block;
+	position: absolute;
+	text-align: center;
+}
+
+.button {
+	border: 1px solid rgb(195,195,195);
+	cursor: pointer;
+	height: 33px;
+	width: 140px;
+	margin: 5px;
+	background: white;
+
+}
+.cell {
+	text-align: center;
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	border: 1px solid rgb(195,195,195);;
+}
+.locked{
+	background: rgb(238,238,238);
+	cursor: not-allowed;
+}
+.red {
+	background: #f44336;
+}
+.orange {
+	background: #ff9800;
+}
+.green {
+	background: #4caf50;
+}
