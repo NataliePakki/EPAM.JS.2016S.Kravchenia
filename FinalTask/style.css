@@ -1,0 +1,92 @@
+body{
+	margin: 0;
+	padding: 0;
+}
+.container-body {
+	display: inline-block;
+	border: 1px solid rgb(195,195,195);
+	width: 1000px;
+	height: 500px;
+	margin-left: 100px;
+	margin-top: 5px;
+}
+.field{
+	display: inline-block;
+	height: inherit;
+	margin-right: -4px;
+	margin-bottom: -21px;
+	border:  1px solid rgb(195,195,195);
+}
+.left.field, .right.field{
+	width: 148px;
+	height: 500px;
+}
+.center.field {
+	position: relative;
+	width: 698px;
+	height: 500px;
+}
+.container-buttons{
+	display: inline-block;
+	position: absolute;
+}
+
+.button {
+	text-align: center;
+	border: 1px solid rgb(195,195,195);
+	cursor: pointer;
+	height: 33px;
+	width: 140px;
+	margin: 5px;
+	background: rgb(43,213,81);
+	color: white;
+}
+.element {
+	border: 1px solid rgb(195,195,195);
+	width: initial;
+	height: 140px;
+	margin: 2px;
+}
+
+.second.element {
+	margin-top: 210px;
+}
+.pic {
+    width: 100px;
+    height: 100px;
+    margin: 5 auto;
+}
+
+
+.cheese .pic, .cheese.resource {
+    background: url(img/cheese.png);
+ } 
+
+.orange .pic, .orange.resource {
+    background: url(img/orange.png); 
+}
+
+.cherry .pic,  .cherry.resource {
+    background: url(img/cherry.png);
+}
+.pumpkin .pic, .pumpkin.resource {
+    background: url(img/pumpkin.png); 
+}
+.bomb.resource {
+	background: url(img/bomb.png); 
+}
+.pic, .resource{ 
+	background-size: 100% !important;
+    background-repeat: no-repeat !important;
+}
+
+.count{
+	text-align: center;
+}
+
+.resource{
+	width: 70px;
+	height: 70px;
+	position: absolute;
+	
+}
