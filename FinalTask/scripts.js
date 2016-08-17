@@ -1,45 +1,45 @@
 $(function () {
-	var $resources = ["cheese","orange","cherry","pumpkin"];
-	var $bomb = "bomb";
-	var $countResources = $resources.length - 1;
+	var resources = ["cheese","orange","cherry","pumpkin"];
+	var bomb = "bomb";
+	var countResources = resources.length - 1;
 	
 	var $button = $("#button");
 	
-	var $resourceCost = 1;
-	var $bombCost = 10;
+	var resourceCost = 1;
+	var bombCost = 10;
 	
 	var $field =  $(".center.field");
 	
-	var $gameIsStarted = false;
+	var gameIsStarted = false;
 	
-	var $widthResource = 70;
-	var $heightResource = 70;
+	var widthResource = 70;
+	var heightResource = 70;
 	
-	var $timeAppearResource = 500; //1000;
-	var $timeHideResource = 700;   //1000;
+	var timeAppearResource = 1000;
+	var timeHideResource = 1500;
 	
-	var $timeAppearBomb = 5000;
-    var $timeHideBomb = 2000;
+	var timeAppearBomb = 5000;
+    var timeHideBomb = 2000;
 		
-	var $timerResourceID;
-	var $timerBombID;
+	var timerResourceID;
+	var timerBombID;
     
-	var $maxX= $field.width() - $widthResource;
-	var $maxY = $field.height() - $heightResource;	
+	var maxX= $field.width() - widthResource;
+	var maxY = $field.height() - heightResource;	
 
 	function random (min, max) {
 		return Math.round(min + Math.random () * (max - min));
 	}
 
 	function getRandomResource () {
-		return $resources[random(0, $countResources)];
+		return resources[random(0, countResources)];
 	}
 	
 	function getRandomXPosition () {
-		return random(0, $maxX) + "px";
+		return random(0, maxX) + "px";
 	}
 	function getRandomYPosition () {
-		return random(0, $maxY) + "px";
+		return random(0, maxY) + "px";
 	}
 	function getResourcePointsElement(resource) {
 		return $("." + resource + ".element .count");
@@ -84,7 +84,7 @@ $(function () {
 			$this.stop();
 			var resourceName = this.className.split(" ")[0];
 			if (resourceName !== "bomb") {
-				increasePoints($resourceCost, resourceName);
+				increasePoints(resourceCost, resourceName);
 			}
 			else {
 				$this.stop();
@@ -94,15 +94,15 @@ $(function () {
 	}
 	
 	function setDisappearing (resource) {
-		if (!resource.hasClass($bomb)) {
-			resource.fadeIn($timeHideResource, function () {
+		if (!resource.hasClass(bomb)) {
+			resource.fadeIn(timeHideResource, function () {
 				var $this = $(this);
 				$this.remove();
 			});
 		} else {
-			resource.fadeIn($timeHideBomb, function () {
+			resource.fadeIn(timeHideBomb, function () {
 				var $this = $(this);
-				descreasePoints($bombCost);	
+				descreasePoints(bombCost);	
 				$this.remove();
 			});
 		}
@@ -114,10 +114,10 @@ $(function () {
 			left : getRandomXPosition()
 		};
 		
-		var element = $("<div class = '" + element + " resource'></div>").hide().appendTo($field).css(coordinates);
+		var $element = $("<div class = '" + element + " resource'></div>").hide().appendTo($field).css(coordinates);
 		
-		addClickEvent(element);
-		setDisappearing(element);
+		addClickEvent($element);
+		setDisappearing($element);
 	}
 	
 	function createResourse () {
@@ -126,19 +126,19 @@ $(function () {
 	}
 	
 	function createBomb () {
-		createElement($bomb);
+		createElement(bomb);
 	}
 	
 	function appearResources () {
 		createResourse();
-		$timerResourceID = window.setTimeout(appearResources, $timeAppearResource);
+		timerResourceID = window.setTimeout(appearResources, timeAppearResource);
 	}
 	function appearBombs () {
 		createBomb();
-		$timerBombID = window.setTimeout(appearBombs, $timeAppearBomb);
+		timerBombID = window.setTimeout(appearBombs, timeAppearBomb);
 	}
 	function start () {
-		$gameIsStarted = true;
+		gameIsStarted = true;
 		$button.text("Stop");
 		$.each($(".resource"), function () {
 			var $this = $(this);
@@ -149,17 +149,17 @@ $(function () {
 	}
 	
 	function stop () {
-		$gameIsStarted = false;	
+		gameIsStarted = false;	
 		
 		$button.text("Start");
 		$(".resource").stop();
 		
-		window.clearTimeout($timerResourceID);
-		window.clearTimeout($timerBombID);
+		window.clearTimeout(timerResourceID);
+		window.clearTimeout(timerBombID);
 	}
 		
 	$button.on("click", function () {
-		if($gameIsStarted === true)
+		if(gameIsStarted === true)
 			stop();
 		else 
 			start();
