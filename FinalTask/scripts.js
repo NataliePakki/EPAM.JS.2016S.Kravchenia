@@ -5,13 +5,12 @@ $(function () {
 	
 	var $button = $("#button");
 	
-		var $resourceCost = 1;
+	var $resourceCost = 1;
 	var $bombCost = 10;
 	
 	var $field =  $(".center.field");
 	
 	var $gameIsStarted = false;
-	var $isBombDestroy = false;		
 	
 	var $widthResource = 70;
 	var $heightResource = 70;
@@ -88,7 +87,7 @@ $(function () {
 				increasePoints($resourceCost, resourceName);
 			}
 			else {
-				$isBombDestroy = true;
+				$this.stop();
 			}
 			$this.remove();
 		});
@@ -103,12 +102,7 @@ $(function () {
 		} else {
 			resource.fadeIn($timeHideBomb, function () {
 				var $this = $(this);
-				if(!$isBombDestroy) {
-					descreasePoints($bombCost);	
-				} else {
-					$isBombDestroy = false;
-				}
-				$isBombDestroy = false;
+				descreasePoints($bombCost);	
 				$this.remove();
 			});
 		}
@@ -132,7 +126,6 @@ $(function () {
 	}
 	
 	function createBomb () {
-		$isBombDestroy = false;
 		createElement($bomb);
 	}
 	
@@ -157,7 +150,6 @@ $(function () {
 	
 	function stop () {
 		$gameIsStarted = false;	
-		$isBombDestroy = false;
 		
 		$button.text("Start");
 		$(".resource").stop();
@@ -165,8 +157,7 @@ $(function () {
 		window.clearTimeout($timerResourceID);
 		window.clearTimeout($timerBombID);
 	}
-	
-	
+		
 	$button.on("click", function () {
 		if($gameIsStarted === true)
 			stop();
